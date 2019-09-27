@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<h1>Novo Produto</h1>
+<div class="row">
+    <div class="col-lg-6">
+        <form action="/final/products/create" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">Nome:</label>
+                {{form.name}}
+                {{form.name.errors}}
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Valor:</label>
+                {{form.value}}
+                {{form.value.errors}}
+            </div>
+            <button type="submit" class="btn btn-primary">OK</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
