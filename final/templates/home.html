@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="jumbotron">
+        <h1 class="display-4">Oi, Tudo Bem?</h1>
+        <p class="lead">Seja bem vindo ao sistema de gestão de atendimento clínicos</p>
+        <hr class="my-4">
+        <p>Conheça abaixo as opções do sistema.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Valor mensal</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">R$200,000</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4" >
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Qtd de atendimentos</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Qtd de exames</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">5000</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-calendar fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="https://blog.leucotron.com.br/wp-content/uploads/2018/01/7-caracteristicas-de-um-atendimento-ao-paciente-de-alta-qualidade-810x540.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Clientes</h5>
+          <p class="card-text">Gerencie o cadastro dos clientes da sua clínica.</p>
+          <a href="http://127.0.0.1:8000/atendimento/paciente/" class="btn btn-primary">Paciente</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="https://clinicanasnuvens.com.br/blog/wp-content/uploads/2015/10/a-importancia-do-sigilo-medico-na-relacao-com-o-paciente.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Médicos</h5>
+          <p class="card-text">Gerencie os profissionais que atendem na sua clínica.</p>
+          <a href="http://127.0.0.1:8000/atendimento/paciente/" class="btn btn-primary">Médico</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card" style="width: 18rem;">
+        <img src="https://abrilveja.files.wordpress.com/2016/09/saude-medicamento-4.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Medicamento</h5>
+          <p class="card-text">Agende as consutas dos médicos de acordo com a escala.</p>
+          <a href="http://127.0.0.1:8000/atendimento/medicamento/" class="btn btn-primary">Medicamento</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+{% endblock %}

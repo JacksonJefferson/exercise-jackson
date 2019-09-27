@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>R$ {{product.value}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="col-lg-6">
+    <form class="input-group" action="/final/products/" method="post">
+        {% csrf_token %}
+        <select name="order" class="custom-select" id="inputGroupSelect04" aria-label="Exemplo de select com botão addon">
+            <option selected>Ordenar por</option>
+            <option value="name">Nome</option>
+            <option value="smaller">Menor preço</option>
+            <option value="bigger">Maior preço</option>
+        </select>
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+    </form>
+</div>
+<p>Foram cadastrados {{products | length }} produtos</p>
+{% endblock %}
