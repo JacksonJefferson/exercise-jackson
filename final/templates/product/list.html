@@ -8,6 +8,7 @@
             <th>ID</th>
             <th>Nome</th>
             <th>valor</th>
+        
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
             <td>R$ {{product.value}}</td>
+            <td><button><a href="/final/products/{{product.id}}/cart">Comprar</a></button></td>
         </tr>
         {% endfor %}
     </tbody>
@@ -33,5 +35,5 @@
         <button class="btn btn-primary" type="submit">Pesquisar</button>
     </form>
 </div>
-<p>Foram cadastrados {{products | length }} produtos</p>
+<p>Foram adicionados {{request.session.ss | length }} produtos ao carrinho</p>
 {% endblock %}

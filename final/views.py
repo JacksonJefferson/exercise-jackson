@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from . models import Product, Client, Cart, Quantity
 from . forms import ProductForm, ClientForm, CartForm, QuantityForm
+import json
+
 
 
 def home(request):
+    visitor = request.session.get('visitor', 1001)
+    request.session['visitor'] = visitor + 1
     return render (request, 'home.html')
 
 
@@ -38,3 +42,16 @@ def product_create(request):
     else:
         form = ProductForm()
         return render (request, 'product/create.html', {'form': form})
+
+def cart_product(request, id):
+    product = Product.objects.get(pk=id)
+    search ={
+        'id':product.id,
+        'name':product.name,
+    }
+    list_product = request.session.get('ss',[])
+    list_product.append(search)
+    request.session['ss']=list_product
+    return redirect ('/final/products/')
+
+
