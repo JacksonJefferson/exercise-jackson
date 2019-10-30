@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+<h1>Carrinho de compras</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>valor</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in n %}
+        <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>R$ {{product.value}}</td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div>
+    <h1>Total: {{soma}}</h1>
+</div>
+<button><a href="/final/products/check">Finalizar</a></button>
+{% endblock %}

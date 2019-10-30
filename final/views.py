@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from . models import Product, Client, Cart, Quantity
 from . forms import ProductForm, ClientForm, CartForm, QuantityForm
 import json
+from datetime import date
 
 
 
@@ -45,13 +46,29 @@ def product_create(request):
 
 def cart_product(request, id):
     product = Product.objects.get(pk=id)
-    search ={
-        'id':product.id,
-        'name':product.name,
-    }
     list_product = request.session.get('ss',[])
-    list_product.append(search)
+    list_product.append(product.id)
     request.session['ss']=list_product
+    
     return redirect ('/final/products/')
 
+def cart(request):
+    car = request.session['ss']
+    n = []
+    soma = 0
+    for i in car:
+        product = Product.objects.get(pk=i)
+        n.append(product)
+        soma = soma + product.value
+    return render (request, 'product/cart.html', {'n':n, 'soma':soma})
 
+def check_out(request):
+    client = Client.objects.get(pk=1)
+    date_actual = date.today()
+    Cart.objects.create(client=client,date=date_actual)
+    cart = Cart.objects.get(pk=1)
+    Cart.save(cart)
+    Quantity.objects.create(quantity=1, product=product, cart=cart)
+    
+    del request.session['ss']
+    return redirect('/final/products/')
