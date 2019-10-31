@@ -47,9 +47,25 @@ def product_create(request):
 def cart_product(request, id):
     product = Product.objects.get(pk=id)
     list_product = request.session.get('ss',[])
-    list_product.append(product.id)
-    request.session['ss']=list_product
+    flag = False
+
+    for s in list_product:
+        if product.id == int(s['id']):
+            p = {
+                'id':product.id,
+                'quantity':s['quantity']+1
+            }
+            flag = True
+            list_product.remove(s)
+            list_product.append(p)
+    if flag == False:
+        p = {
+                'id':product.id,
+                'quantity':1
+            }
+        list_product.append(p)
     
+    request.session['ss']=list_product
     return redirect ('/final/products/')
 
 def cart(request):
@@ -57,18 +73,27 @@ def cart(request):
     n = []
     soma = 0
     for i in car:
-        product = Product.objects.get(pk=i)
-        n.append(product)
-        soma = soma + product.value
+        product = Product.objects.get(pk=int(i['id']))
+        val = product.value * int(i['quantity'])
+        soma = soma + val
+        p = {
+                'id':product.id,
+                'quantity':i['quantity'],
+                'value':product.value,
+                'value_total':val
+            }
+        n.append(p)
     return render (request, 'product/cart.html', {'n':n, 'soma':soma})
 
 def check_out(request):
+    s = request.session['ss']
     client = Client.objects.get(pk=1)
     date_actual = date.today()
-    Cart.objects.create(client=client,date=date_actual)
-    cart = Cart.objects.get(pk=1)
+    cart = Cart.objects.create(client=client,date=date_actual)
     Cart.save(cart)
-    Quantity.objects.create(quantity=1, product=product, cart=cart)
-    
+    for i in s:
+        product = Product.objects.get(pk=int(i['id']))
+        quant = Quantity.objects.create(quantity=int(i['quantity']), product=product, cart=cart)
+        Quantity.save(quant)
     del request.session['ss']
     return redirect('/final/products/')

@@ -7,7 +7,9 @@
         <tr>
             <th>ID</th>
             <th>Nome</th>
-            <th>valor</th>
+            <th>Valor</th>
+            <th>Quantidade</th>
+            <th>Valor Total</th>
 
         </tr>
     </thead>
@@ -17,6 +19,8 @@
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
             <td>R$ {{product.value}}</td>
+            <td>{{product.quantity}}</td>
+            <td>R$ {{product.value_total}}</td>
             
         </tr>
         {% endfor %}
